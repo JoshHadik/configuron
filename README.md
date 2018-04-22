@@ -10,7 +10,7 @@ And then create a new Configuration class within the namespace of your module.
 
 ```ruby
 class YourModule::Configuration
-  extend Configuron::Configurable
+
 end
 ```
 
