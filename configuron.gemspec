@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'joshadik307@gmail.com'
   s.files       = ["lib/configuron.rb"]
   s.homepage    =
-    'http://rubygems.org/gems/hola'
+    'https://github.com/JoshHadik/Configuron'
   s.license       = 'MIT'
 end
