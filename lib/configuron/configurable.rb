@@ -3,7 +3,7 @@ module Configuron
     class UnconfigurableTypeError < StandardError; end
 
     def self.extended(mod)
-      if mod.is_a? Module
+      if mod.class == Module
         add_configuration_methods_to(mod)
       else
         raise UnconfigurableTypeError

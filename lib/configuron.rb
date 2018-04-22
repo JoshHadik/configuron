@@ -1,3 +1,3 @@
 module Configuron
-  require_relative "configuron"
+  require_relative "configuron/configurable"
 end
