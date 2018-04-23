@@ -2,6 +2,7 @@
 
 Configuron is an extremely lightweight option for adding configurable behavior to a module. Rather than use a configuration hash, Configuron allows you to easily create a Configurable class that can be attached to your module.
 
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -19,6 +20,7 @@ Or install it yourself as:
 ```bash
 $ gem install configuron
 ```
+
 
 ## Getting Started
 
@@ -54,22 +56,25 @@ YourModule.reset!
 ## Deletes the stored instance of Configuration and replaces it with a new one
 ```
 
-## Real World Example
+
+## A Real World Example
 
 To get a better idea of how all this works, let's take a look at a real world example.
 
-One of the projects I'm working on right now is AlexaRailsKit, a platform that allows developers to integrate Amazon's Alexa with their rails application like never before! [As of the time of this writing AlexaRailsKit is not yet available.]
+One of the projects we're working on right now is AlexaRailsKit, a platform that allows developers to integrate Amazon's Alexa with their rails application like never before! [As of the time of this writing AlexaRailsKit is not yet available.]
 
 One of the features of AlexaRailsKit is the ability to easily protect your Skill's backend (which would be the rails app in this case) from foreign requests. Without a security measure like this, any developer that has access to a skill service's (the rails app) URL could easily set up their own Alexa Skill to interact with that application. To prevent this, Amazon attaches a Skill ID property to every single request made from Alexa. This Skill ID can then be matched against a list of pre-approved Skill ID's by the rails application to determine whether the request should be permitted or denied.
 
 We wanted to add two configuration options to AlexaRailsKit to help protect against foreign requests:
 
 1. The ability to add a pre-approved Skill ID.
-2. The ability to allow all foreign requests. (usually just used in development)
+2. The ability to allow requests from any Alexa skill. (usually just used in development)
 
 To do this, we used Configuron. Here's how we did it:
 
+
 ### Step 1 - Set up the Module
+
 
 ```ruby
 module AlexaRailsKit
@@ -77,13 +82,15 @@ module AlexaRailsKit
 end
 ```
 
+
 ### Step 2 - Create the Configuration Class
+
 
 We knew the configuration class needed four things:
 
-1. An boolean variable to check if the developer specifically chose to allow foreign requests. (allow_foreign_requests)
+1. A boolean variable to check if the developer specifically chose to allow foreign requests. (allows_foreign_requests)
 2. A permitted skill ids array to store a list of all of the pre-approved skill ids. (permitted_skill_ids)
-3. A method to change the allow foreign requests boolean to true. (allow_foreign_requests!)
+3. A method to change the allows foreign requests boolean to true. (allow_foreign_requests!)
 4. A method to add a new skill id to the array of permitted skills. (add_permitted_skill_id)
 
 Here's what we came up with:
@@ -107,15 +114,18 @@ class AlexaRailsKit::Configuration
 end
 ```
 
+
 ### Step 3 - Verify requests
+
 
 Our next step was to create a method to verify the requests. We chose to add this method on the AlexaRailsKit module.
 
-The request verification method needed to do three things:
+The request verification method needed to do four things:
 
 1. Accept the request's Skill ID as a paremeter.
-2. Return true if the module was configured to allow foreign requests.
-3. Return true if the requested Skill ID was included in the configuration classes permitted skills or false if it wasn't.
+2. Return true if the module is configured to allow foreign requests.
+3. Return true if the request's Skill ID is included in the configuration classes permitted skill ids.
+4. Return false if the request's Skill ID is not permitted and foreign requests are not allowed.
 
 Here's how our module looked after we implemented it:
 
@@ -130,9 +140,11 @@ module AlexaRailsKit
 end
 ```
 
-Notice how we were able to access the configuration object by just calling 'configuration' instead of '[ModuleName].configuration' like shown above. This is because we are accessing it on the same module that the class is defined on.
+Notice how we were able to access the configuration object by just calling 'configuration' instead of '[ModuleName].configuration' like shown above. This is because we are accessing it on the same module as the Configuration class is defined on.
+
 
 ### Step 4 - Allow Developers to Configure AlexaRailsKit
+
 
 Now that we had all the methods and configuration variables in place to handle request verification, the last step in the equation was to allow developers using AlexaRailsKit to configure these options. To do this, we simply added an AlexaRailsKit Initializer file to config/initializers which used Configuron's configure method like so:
 
@@ -142,12 +154,14 @@ AlexaRailsKit.configure do |config|
 end
 ```
 
-Now, with all this in place, developers can easily configure AlexaRailsKit. if they want to add a permitted skill id, they can simply do this:
+Now, with all this in place, developers can easily configure AlexaRailsKit. If they want to add a permitted skill id, they can simply do this:
 
 ```ruby
 ## config/initializer/alexa_rails_kit.rb
 AlexaRailsKit.configure do |config|
+
   config.add_permitted_skill_id "amazon.skill.12312.123.fake-skill-id"
+
 end
 ```
 
@@ -156,9 +170,12 @@ Or to allow all foreign requests:
 ```ruby
 ## config/initializer/alexa_rails_kit.rb
 AlexaRailsKit.configure do |config|
+
   config.allow_foreign_requests!
+  
 end
 ```
+
 
 ## Behind The Scenes
 
@@ -181,6 +198,7 @@ module YourModule
 
 end
 ```
+
 
 ## Build Status
 
