@@ -154,6 +154,7 @@ Now that we had all the methods and configuration variables in place to handle r
 
 ```ruby
 ## config/initializer/alexa_rails_kit.rb
+
 AlexaRailsKit.configure do |config|
 end
 ```
@@ -164,9 +165,7 @@ Now, with all this in place, developers can easily configure AlexaRailsKit. If t
 ## config/initializer/alexa_rails_kit.rb
 
 AlexaRailsKit.configure do |config|
-
   config.add_permitted_skill_id "amazon.skill.12312.123.fake-skill-id"
-
 end
 ```
 
@@ -176,9 +175,7 @@ Or to allow all foreign requests:
 ## config/initializer/alexa_rails_kit.rb
 
 AlexaRailsKit.configure do |config|
-
   config.allow_foreign_requests!
-
 end
 ```
 
