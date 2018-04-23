@@ -51,7 +51,7 @@ end
 
 ```ruby
 YourModule.reset!
-## Deletes the stored instance of Configuration and creates a new one
+## Deletes the stored instance of Configuration and replaces it with a new one
 ```
 
 ## Real World Example
