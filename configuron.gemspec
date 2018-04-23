@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/JoshHadik/Configuron"
   s.authors     = ["Josh Hadik"]
   s.email       = 'josh.hadik@gmail.com'
-  s.files       = Dir.glob("{lib}/*")
+  s.files       = Dir.glob("{lib}/**/*")
   s.homepage    =
     'https://github.com/JoshHadik/Configuron'
   s.license       = 'MIT'
