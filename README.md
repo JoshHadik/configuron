@@ -147,7 +147,7 @@ end
 Notice how we were able to access the configuration object by just calling 'configuration' instead of '[ModuleName].configuration' like shown above. This is because we are accessing it on the same module as the Configuration class is defined on.
 
 
-### Step 4 - Allow Developers to Configure AlexaRailsKit
+### Step 4 - Allow Developers to Configure
 
 
 Now that we had all the methods and configuration variables in place to handle request verification, the last step in the equation was to allow developers using AlexaRailsKit to configure these options. To do this, we simply added an AlexaRailsKit Initializer file to config/initializers which used Configuron's configure method like so:
