@@ -5,5 +5,4 @@ ruby '~> 2.4.0'
 
 group :test do
   gem 'rake'
-  gem 'codecov', :require => false
 end
