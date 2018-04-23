@@ -24,3 +24,5 @@ And then execute:
 ```bash
 $ bundle
 ```
+
+[![Build Status](https://travis-ci.org/JoshHadik/Configuron.svg?branch=master)](https://travis-ci.org/JoshHadik/Configuron)
