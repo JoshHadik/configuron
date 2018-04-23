@@ -1,7 +1,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "alexa_rails_kit/version"
+require "configuron/version"
 
 Gem::Specification.new do |s|
   s.name        = 'configuron'
