@@ -2,6 +2,10 @@
 
 Configuron is an extremely lightweight option for adding configurable behavior to a module. Rather than use a configuration hash, Configuron allows you to easily create a Configurable class that can be attached to your module.
 
+## Build Status
+
+[![Build Status](https://travis-ci.org/JoshHadik/Configuron.svg?branch=master)](https://travis-ci.org/JoshHadik/Configuron)
+
 
 ## Installation
 
@@ -200,8 +204,3 @@ module YourModule
 
 end
 ```
-
-
-## Build Status
-
-[![Build Status](https://travis-ci.org/JoshHadik/Configuron.svg?branch=master)](https://travis-ci.org/JoshHadik/Configuron)
