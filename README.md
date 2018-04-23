@@ -60,7 +60,7 @@ To get a better idea of how all this works, let's take a look at a real world ex
 
 One of the projects I'm working on right now is AlexaRailsKit, a platform that allows developers to integrate Amazon's Alexa with their rails application like never before! [As of the time of this writing AlexaRailsKit is not yet available.]
 
-One of the features of AlexaRailsKit is the ability to easily protect your Skill's backend (which would be the rails app in this case) from foreign requests. Without a security measure like this, any developer that has access to a skill service's (the rails app) URL could easily set up their own Alexa Skill to interact with that application. To prevent this, Amazon attaches a Skill ID property to every single request made from an Alexa Skill. This Skill ID can then be matched against a list of pre-approved Skill ID's by the rails application to determine whether the request should be permitted or denied.
+One of the features of AlexaRailsKit is the ability to easily protect your Skill's backend (which would be the rails app in this case) from foreign requests. Without a security measure like this, any developer that has access to a skill service's (the rails app) URL could easily set up their own Alexa Skill to interact with that application. To prevent this, Amazon attaches a Skill ID property to every single request made from Alexa. This Skill ID can then be matched against a list of pre-approved Skill ID's by the rails application to determine whether the request should be permitted or denied.
 
 We wanted to add two configuration options to AlexaRailsKit to help protect against foreign requests:
 
