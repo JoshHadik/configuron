@@ -56,16 +56,16 @@ YourModule.reset!
 
 ## Real World Example
 
-To get a better idea of how all this works, let's take a look at a real world example
+To get a better idea of how all this works, let's take a look at a real world example.
 
-One of the projects I'm working on right now is AlexaRailsKit, a platform that allows developers to integrate Amazon's Alexa with their rails application like never before! [NOTE - as of the time of this writing AlexaRailsKit is not yet available]
+One of the projects I'm working on right now is AlexaRailsKit, a platform that allows developers to integrate Amazon's Alexa with their rails application like never before! [As of the time of this writing AlexaRailsKit is not yet available.]
 
 One of the features of AlexaRailsKit is the ability to easily protect your Skill's backend (which would be the rails app in this case) from foreign requests. Without a security measure like this, any developer that has access to a skill service's (the rails app) URL could easily set up their own Alexa Skill to interact with that application. To prevent this, Amazon attaches a Skill ID property to every single request made from an Alexa Skill. This Skill ID can then be matched against a list of pre-approved Skill ID's by the rails application to determine whether the request should be permitted or denied.
 
 We wanted to add two configuration options to AlexaRailsKit to help protect against foreign requests:
 
-1. The ability to add a pre-approved Skill ID
-2. The ability to allow all foreign requests (usually just used in development)
+1. The ability to add a pre-approved Skill ID.
+2. The ability to allow all foreign requests. (usually just used in development)
 
 To do this, we used Configuron. Here's how we did it:
 
@@ -83,8 +83,8 @@ We knew the configuration class needed four things:
 
 1. An boolean variable to check if the developer specifically chose to allow foreign requests. (allow_foreign_requests)
 2. A permitted skill ids array to store a list of all of the pre-approved skill ids. (permitted_skill_ids)
-3. A method to change the allow foreign requests boolean to true (allow_foreign_requests!)
-4. A method to add a new skill id to the array of permitted skills (add_permitted_skill_id)
+3. A method to change the allow foreign requests boolean to true. (allow_foreign_requests!)
+4. A method to add a new skill id to the array of permitted skills. (add_permitted_skill_id)
 
 Here's what we came up with:
 
