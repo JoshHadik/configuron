@@ -39,18 +39,19 @@ end
 That's it! Configuron is all set up now! You now have access to three new methods that can be called on your module: configuration, configure, and reset!. Configuration allows you to access the new configuration class, configure allows you to set up the configuration class in block format, and reset! will reset the configuration class.
 
 ```ruby
-YourModule.configuration #-> Returns a stored instance of the Configuration class
+YourModule.configuration
+## Returns a stored instance of the Configuration class
 ```
 
 ```ruby
 YourModule.configure do |config|
-  ## Passes the stored instance of Configuration as config
 end
+## Passes the stored instance of Configuration as config
 ```
 
 ```ruby
-YourModule.reset! ## Deletes the stored instance of Configuration and creates a new one
-end
+YourModule.reset!
+## Deletes the stored instance of Configuration and creates a new one
 ```
 
 ## Real World Example
