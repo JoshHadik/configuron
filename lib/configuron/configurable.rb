@@ -15,7 +15,7 @@ module Configuron
         def configuration
           @configuration ||= self::Configuration.new
         end
-        def reset
+        def reset!
           @configuration = self::Configuration.new
         end
         def configure
