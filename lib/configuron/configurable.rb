@@ -12,6 +12,9 @@ module Configuron
 
     def self.add_configuration_methods_to(mod)
       mod.instance_eval do
+        def root
+          Pathname.new(File.dirname __dir__)
+        end
         def configuration
           @configuration ||= self::Configuration.new
         end
