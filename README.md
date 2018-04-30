@@ -187,15 +187,15 @@ When you extend a module with the Configuron, Configuron uses instance_eval on t
 ```ruby
 module YourModule
 
-  def configuration
+  def self.configuration
     @configuration ||= YourModule::Configuration.new
   end
 
-  def reset!
+  def self.reset!
     @configuration = YourModule::Configuration.new
   end
 
-  def configure
+  def self.configure
     yield(configuration)
   end
 
