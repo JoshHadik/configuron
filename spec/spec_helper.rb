@@ -1,5 +1,4 @@
 require 'configuron'
-require 'pry'
 require 'json'
 require 'bundler/setup'
 

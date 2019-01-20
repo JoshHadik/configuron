@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Configuron::VERSION
   s.date        = '2018-04-21'
   s.summary     = "Super lightweight (like only three methods lightweight) library to add configuration options to a module."
-  s.description = "A simple hello world gem"
+  s.description = "A simple gem for configuration"
   s.homepage    = "https://github.com/JoshHadik/Configuron"
   s.authors     = ["Josh Hadik"]
   s.email       = 'josh.hadik@gmail.com'
