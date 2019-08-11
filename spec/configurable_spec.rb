@@ -17,6 +17,13 @@ RSpec.describe Configuron::Configurable, type: :unit do
     end
   end
 
+  describe '.reset_configuration!' do
+    it 'resets the configuration object to a new instance' do
+      expect { configurable_module.reset_configuration! }.to change { configurable_module.instance_variable_get(:@configuration)}
+      expect(configurable_module.configuration).to be_an_instance_of(ConfigurableModule::Configuration)
+    end
+  end
+
   describe '.reset!' do
     it 'resets the configuration object to a new instance' do
       expect { configurable_module.reset! }.to change { configurable_module.instance_variable_get(:@configuration)}

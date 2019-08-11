@@ -4,9 +4,11 @@ module Configuron
       @configuration ||= self::Configuration.new
     end #TT
 
-    def reset!
+    def reset_configuration!
       @configuration = self::Configuration.new
     end #TT
+
+    alias_method :reset!, :reset_configuration! #TT
 
     def configure
       yield(configuration)

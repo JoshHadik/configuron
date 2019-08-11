@@ -80,25 +80,25 @@ class YourSuperCoolModule::Configuration
 end
 ```
 
-That's it! Configuron is all set up now! You now have access to three new methods that can be called on your module: '.configuration', '.configure', and '.reset!'.
-'.configuration' returns the configuration class, '.configure' allows you to set up the configuration class in block format, and '.reset!' will reset the state of the configuration class.
+That's it! Configuron is all set up now! You now have access to three new methods that can be called on your module: '.configuration', '.configure', and '.reset_configuration!'.
+'.configuration' returns the configuration class, '.configure' allows you to set up the configuration class in block format, and '.reset_configuration!' will reset the state of the configuration class.
 
 ```ruby
-YourSuperCoolModule.configuration
 ## Returns a stored instance of the Configuration class
+YourSuperCoolModule.configuration
 ```
 
 ```ruby
+## Passes the stored instance of Configuration as config
 YourSuperCoolModule.configure do |config|
   config.path_to_something_awesome = "./lib/path/awesome.rb"
   config.block_stuff_thats_not_awesome!
 end
-## Passes the stored instance of Configuration as config
 ```
 
 ```ruby
-YourSuperCoolModule.reset!
 ## Deletes the stored instance of Configuration and replaces it with a new one
+YourSuperCoolModule.reset_configuration!
 ```
 
 Once you have that setup, you can use the '.configuration' method throughout the logic of your modules code to access the state of the configuration:
@@ -106,20 +106,20 @@ Once you have that setup, you can use the '.configuration' method throughout the
 ```ruby
 module YourSuperCoolModule
   def read_something_awesome
-    File.read(YourSuperCoolModule.configuration.path_to_something_awesome
+    File.read(YourSuperCoolModule.configuration.path_to_something_awesome)
   end
 
   def handle_incoming_request(request)
     if !request.is_awesome?
+      # Allow non-awesome requests only if module is configured to allow it
       if YourSuperCoolModule.configuration.allow_stuff_thats_not_awesome
-        # Allow non-awesome requests only if module is configured to allow it
         allow(request)
+      # Otherwise block not awesome requests
       else
-        # Otherwise block not awesome requests
         block(request)
       end
+    # Always allow awesome requests
     else
-      # Always allow awesome requests
       allow(request)
     end
   end
@@ -222,24 +222,22 @@ end
 
 ## Behind The Scenes (DIY)
 
-When you extend a module with Configuron::Configurable, Configuron adds three methods, configuration, configure, and reset! to your module.
+When you extend a module with Configuron::Configurable, Configuron adds three methods, configuration, configure, and reset_configuration! to your module.
 
 If you don't want to use configuron, but want the same functionality, you can easily 'roll your own' solution by adding the following three methods to the module you want to make configurable:
 
 ```ruby
 module YourSuperCoolModule
-
   def self.configuration
     @configuration ||= YourSuperCoolModule::Configuration.new
   end
 
-  def self.reset!
+  def self.reset_configuration!
     @configuration = YourSuperCoolModule::Configuration.new
   end
 
   def self.configure
     yield(configuration)
   end
-
 end
 ```
